@@ -1,241 +1,116 @@
-# alx-low_level_programming
-
-# Shell Project
-This project is a simple UNIX command-line interpreter, also known as a shell. It is capable of reading commands from standard input, parsing them, and executing them.
-
-## 0x16. C - Simple Shell
-
-### Pre-requisites
-
-#### Authorized functions and macros:
-- access (man 2 access)
-- chdir (man 2 chdir)
-- close (man 2 close)
-- closedir (man 3 closedir)
-- execve (man 2 execve)
-- exit (man 3 exit)
-- _exit (man 2 _exit)
-- fflush (man 3 fflush)
-- fork (man 2 fork)
-- free (man 3 free)
-- getcwd (man 3 getcwd)
-- getline (man 3 getline)
-- isatty (man 3 isatty)
-- kill (man 2 kill)
-- malloc (man 3 malloc)
-- open (man 2 open)
-- opendir (man 3 opendir)
-- perror (man 3 perror)
-- read (man 2 read)
-- readdir (man 3 readdir)
-- signal (man 2 signal)
-- stat (__xstat) (man 2 stat)
-- lstat (__lxstat) (man 2 lstat)
-- fstat (__fxstat) (man 2 fstat)
-- strtok (man 3 strtok)
-- wait (man 2 wait)
-- waitpid (man 2 waitpid)
-- wait3 (man 2 wait3)
-- wait4 (man 2 wait4)
-- write (man 2 write)
-
-
-## Project Structure
-
-The project is organized as follows:
-
-```
-.
-├── AUTHORS
-├── README.md
-├── LICENSE
-├── CODE_OF_CONDUCT.md
-├── simple_shell.1 (man page)
-├── shell.h
-├── main.c
-├── get_input.c
-├── get_line.c*
-├── prompt.c
-├── tokenizer.c
-├── execute.c
-├── free.c
-├── signal_handler.c
-├── built-ins Funcs:
-│ ├── get_env.c
-│ ├── bultins_shell_cd.c
-│ ├── bultins_shell_exit.c
-│ ├── bultins_shell_help.c
-│ ├── bultins_set_env.c
-│ └──── bultins_unset_env
-├── Path Funcs:
-│ ├── get_path.c
-│ ├── find_in_path.c
-│ ├── set_path.c
-│ ├── append_to_path.c
-│ └── prepend_to_path.c
-├── error.c
-└── utils:
-  ├── utils_func1.c
-  ├── utils_func2.c
-  └── utils_func2.c
- 
-```
-
-
-`AUTHORS` file lists the contributors to the project. 
-
-`README.md` file you are currently reading is a brief overview of the project. 
-
-`man_1_simple_shell` file is the man page for the shell.
-
-`shell.h`: a header file that includes all the necessary libraries, function prototypes, and global variables.
-
-`main.c`: the main file that contains the loop for getting the user input, parsing the input, and executing the command.
-
-`prompt.c`: a file that handles the prompt display for the shell.
-
-`execute.c`: a file that contains the functions for executing the non-built-in commands.
-
-`parser.c` : This file contains the implementation of functions for parsing user input into arguments.
-
-`free.c`: This file contains the implementation of functions for deallocating memory.
-
-`signal_handler.c`: This file contains the implementation of signal handler functions for handling SIGINT, SIGTSTP and SIGQUIT signals.
-
-`builtins funcs`: These are the source code files that contains functions related to the implementations of the built-in commands (cd, exit, env, setenv, unsetenv and help).
-
-`path funcs`: These are the source code files that contains functions related to working with the system's PATH environment variable, such as finding a command in the PATH, getting the current PATH, and setting or modifying the PATH.
-
-`utils.c`: a file that contains utility functions for the shell, such as string manipulation functions and functions for printing error messages.
-
-`error.c`: This file contains the implementation of functions for handling errors.
-
-`Makefile`: a file that specifies the compilation rules for the shell.
-
-`test_files`: These are test files for each of the implementation files in source_files. 
-
-This tree separates the implementation files from the test files, making it easier to navigate the project and run the tests.
-
-## Function Prototypes.
-
-The header file declares several function prototypes for the shell program, including:
-
-`prompt()`: prints the shell prompt
-
-`execute()`: executes a command with arguments
-
-`get_line()`: Read input from the standard input. Custom getline().
-
-`get_input()`: Retrieves user input from stdin. Uses getline().
-
-`tokenize()`: parsing user input into arguments.
-
-`handle_sigint()`: signal handler for SIGINT
-
-`handle_sigstp()`: signal handler for SIGSTP
-
-`handle_sigquit()`: signal handler for SIGQUIT
-
-`check_for_builtin()`: checks if a command is a shell builtin
-
-`shell_env()`: prints environment variables
-
-`shell_setenv()`: sets an environment variable
-
-`shell_unsetenv()`: unsets an environment variable
-
-`shell_help()`: prints help information for the shell
-
-`shell_cd()`: changes the current working directory
-
-`shell_exit()`: exits the shell program with a status code
-
-`_getenv()`: retrieves the value of an environment variable
-
-`find_in_path()`: searches for a command in the directories specified by the PATH environment variable
-
-`get_path()`: retrieves the PATH environment variable
-
-`set_path()`: sets the PATH environment variable
-
-`append_to_path()`: appends a directory to the PATH environment variable
-
-`prepend_to_path()`: prepends a directory to the PATH environment variable
-
-`free_error()`: frees memory allocated following system error
-
-`free_tokens()`: frees memory allocated for tokens
-
-`_puterror()`: prints an error message
-
-`_puts()`: prints a string
-
-`_atoi()`: converts a string to an integer
-
-`_putchar()`: prints a character
-
-`_strlen()`: gets the length of a string
-
-`_strcmp()`: compares two strings
-
-`_strcpy()`: copies a string
-
-`_strcat()`: concatenates two strings
-
-`_strdup()`: duplicates a string
-
-`_strchr()`: searches a string for a character
-
-`_strstr()`: searches for the first occurrence of a substring
-
-`_strspn()`: gets the length of a prefix substring
-
-## Usage
-
-To use the simple shell, compile the files using `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`. Then, run the shell using `./hsh`.
-
-`
-gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
-`
-
-This wil compile all the '.c' files and change the output's name to 'hsh'.
-
-### Template to test output:
-=============
-```
-$ ./hsh
-
-($) ls
-
-hsh main.c shell.c shell.h
-
-$ exit
+# 0x16. C - Simple Shell
+ **By Spencer Cheng, featuring Julien Barbier**
+ Project to be done in teams of 2 people (your team: Godswill Kalu, Vatalis Ibeh)
+
+# Learning Objectives
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+# General
+Who designed and implemented the original Unix operating system
+Who wrote the first version of the UNIX shell
+Who invented the B programming language (the direct predecessor to the C programming language)
+Who is Ken Thompson
+How does a shell work
+What is a pid and a ppid
+How to manipulate the environment of the current process
+What is the difference between a function and a system call
+How to create processes
+What are the three prototypes of main
+How does the shell use the PATH to find the programs
+How to execute another program with the execve system call
+How to suspend the execution of a process until one of its children terminates
+What is EOF / “end-of-file”?
+# Requirements
+#  General
+Allowed editors: vi, vim, emacs
+All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+All your files should end with a new line
+A README.md file, at the root of the folder of the project is mandatory
+Your code should use the Betty style. It will be checked using betty-style.pl and betty-doc.pl
+Your shell should not have any memory leaks
+No more than 5 functions per file
+All your header files should be include guarded
+Use system calls only when you need to (why?)
+# GitHub
+*There should be one project repository per group. If you and your partner have a repository with the same name in both your accounts, you risk a 0% score. Add your partner as a collaborator. *
+
+More Info
+Output
+Unless specified otherwise, your program must have the exact same output as sh (/bin/sh) as well as the exact same error output.
+The only difference is when you print an error, the name of the program must be equivalent to your argv[0] (See below)
+Example of error with sh:
+
+$ echo "qwerty" | /bin/sh
+/bin/sh: 1: qwerty: not found
+$ echo "qwerty" | /bin/../bin/sh
+/bin/../bin/sh: 1: qwerty: not found
 $
-```
+Same error with your program hsh:
 
-also in non-interactive mode:
-```
-$ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_ls_2
+$ echo "qwerty" | ./hsh
+./hsh: 1: qwerty: not found
+$ echo "qwerty" | ./././hsh
+./././hsh: 1: qwerty: not found
 $
-$ cat test_ls_2
-/bin/ls
-/bin/ls
-$
-$ cat test_ls_2 | ./hsh
-hsh main.c shell.c test_ls_2
-hsh main.c shell.c test_ls_2
-$
+
+# List of allowed functions and system calls
+access (man 2 access)
+chdir (man 2 chdir)
+close (man 2 close)
+closedir (man 3 closedir)
+execve (man 2 execve)
+exit (man 3 exit)
+_exit (man 2 _exit)
+fflush (man 3 fflush)
+fork (man 2 fork)
+free (man 3 free)
+getcwd (man 3 getcwd)
+getline (man 3 getline)
+getpid (man 2 getpid)
+isatty (man 3 isatty)
+kill (man 2 kill)
+malloc (man 3 malloc)
+open (man 2 open)
+opendir (man 3 opendir)
+perror (man 3 perror)
+read (man 2 read)
+readdir (man 3 readdir)
+signal (man 2 signal)
+stat (__xstat) (man 2 stat)
+lstat (__lxstat) (man 2 lstat)
+fstat (__fxstat) (man 2 fstat)
+strtok (man 3 strtok)
+wait (man 2 wait)
+waitpid (man 2 waitpid)
+wait3 (man 2 wait3)
+wait4 (man 2 wait4)
+write (man 2 write)
+
+# Compilation
+## Your shell will be compiled this way:
+
+`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
+
+
+# files
+- README.md - description about the project repo
+- man_1_simple_shell - is the man page for the shell we are going to write.
+- AUTHORS - file at the  root of your repository, listing all individuals having contributed content to the repository. 
+- main.h - is the header file which contains the standared header file and prototype of o function used in the program.
+- main.c - initialize the program with infinite loop by call the prompt function
+- prompt.c - it use getline system call to read the input from the user and run infinite loop with fork to keep prompt going.
+- special_character - It identiies if the special inputs such as if the frist input is slash,the user typed exit or env...
+- string.c -it handles the strings(string length, write string,find string in directory,concatane strings....)
+- cmd.c - it finds the command the user entered.
+- execute.c - execute the command.
+
+## How to add Author file
+`Bash script for generating the list of authors in git repo`
 ```
+#!/bin/sh
 
-## Man Page.
-
-To generate a man page for the `simple_shell`, you can use the `ronn` utility. `ronn` allows you to write man pages in Markdown format and then convert them to man page format.
-
-Once you have created the `simple_shell.1.md` file, run the following command to generate the man page:
-
-`ronn simple_shell.1.md`
-
-This will create a new file called `simple_shell.1`. You can view the man page by running the following command:
-
-`man ./simple_shell.1`
+git shortlog -se \
+  | perl -spe 's/^\s+\d+\s+//' \
+  | sed -e '/^CommitSyncScript.*$/d' \
+  > AUTHORS
+  ```
